@@ -17,12 +17,17 @@
     <div id="work_arrange">
         <div>值班表</div>
         @foreach($work_times as $key=> $work_time)
-        <div> {{ $date }} {{ $work_time['start_time'] }} - {{$work_time['end_time'] }} {{ $work_time['work_arrange']['employee_group_name'] }}组 </div>
-            @if(isset($work_time['work_arrange']) && isset($work_time['work_arrange']['employees']))
+        @if(isset($work_time['work_arrange']) && $work_time['work_arrange'])
+            <div> {{ $date }} {{ $work_time['start_time'] }} - {{$work_time['end_time'] }} {{ $work_time['work_arrange']['employee_group_name'] }}组 </div>
+            @if(isset($work_time['work_arrange']['employees']))
                 @foreach($work_time['work_arrange']['employees'] as $key=> $employee)
                     <div> {{ $employee['name'] }} </div>
                 @endforeach
             @endif
+        @else
+            <div>{{ $date }} {{ $work_time['start_time'] }} - {{$work_time['end_time'] }} 未排班</div>
+        @endif
         @endforeach
+
     </div>
 </div>
