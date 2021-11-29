@@ -64,7 +64,7 @@ return [
             $theme->asset()->container('layimpc')->add('layimpc_css', 'css/admin/layimpc.css');
 
             $theme->asset()->container('footer')->add('layui_js', 'lib/layui/layui.js');
-            $theme->asset()->container('footer')->usePath()->add('main_js', 'js/main.js');
+           // $theme->asset()->container('footer')->usePath()->add('main_js', 'js/main.js');
         },
 
         // Listen on event before render a layout,
