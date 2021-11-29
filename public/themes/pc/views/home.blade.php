@@ -15,15 +15,15 @@
             </div>
         </div>
     </div>
-	<div class="zb-title">{{ date('Y-m-d') }}值班表</div>
+	<div class="zb-title">值班表</div>
     <div id="work_arrange">
 
         
         @foreach($work_times as $key=> $work_time)
-		<div class="item">
+		<div class="item" @if(!$work_time->is_show) style="display: none;" @endif>
         @if(isset($work_time['work_arrange']) && $work_time['work_arrange'])
 			
-            <div class="time-line"> {{ $date }} {{ $work_time['start_time'] }} - {{$work_time['end_time'] }} {{ $work_time['work_arrange']['employee_group_name'] }}组 </div>
+            <div class="time-line"> {{ $work_time['start_time'] }} - {{$work_time['end_time'] }} {{ $work_time['work_arrange']['employee_group_name'] }}组 </div>
             @if(isset($work_time['work_arrange']['employees']))
                 @foreach($work_time['work_arrange']['employees'] as $key=> $employee)
                     <div class="name-line"> {{ $employee['name'] }} </div>
@@ -85,7 +85,7 @@ layui.use(['jquery','element','table'], function(){
 	.zb-title{text-align:center;font-size:36px;width:1200px;margin:0 auto;position:relative}
 	.zb-title:before{content:'';position:absolute;width:400px;height:2px;border-radius:2px;background:#3da5dd;right:10px;top:50%}
 	.zb-title:after{content:'';position:absolute;width:400px;height:2px;border-radius:2px;background:#3da5dd;left:10px;top:50%}
-	.item{float:left;width:380px;margin:0 10px;box-shadow:0 5px 20px #eee;border-radius:5px;overflow:hidden;}
+	.item{margin:0 10px;box-shadow:0 5px 20px #eee;border-radius:5px;overflow:hidden;}
 	.time-line{height:50px;line-height:50px;text-align:center;background:#3da5dd;color:#fff;font-size:16px;font-weight:bold;}
 	.name-line{height:50px;line-height:50px;text-align:center;background:#fff;color:#333;font-size:16px;font-weight:bold;}
 	.layui-form-item{width:1200px;margin:20px auto 40px auto;text-align:right}
