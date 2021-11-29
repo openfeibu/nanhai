@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pc;
 
 use App\Models\Employee;
 use App\Models\EmployeeGroup;
+use App\Models\Job;
 use App\Models\WorkArrange;
 use App\Models\WorkTime;
 use Illuminate\Http\Request;
@@ -34,8 +35,13 @@ class HomeController extends BaseController
             $work_arrange = WorkArrange::where('work_time_id',$work_time['id'])->where('date',$date)->first();
             if($work_arrange)
             {
-                $work_arrange->employees = Employee::where('employee_group_id',$work_arrange['employee_group_id'])->orderBy('id','asc')->get()->toArray();
+                $work_arrange->employees = Employee::where('employee_group_id',$work_arrange['employee_group_id'])->orderBy('id','asc')->get();
                 $work_arrange->employee_group_name = EmployeeGroup::where('id',$work_arrange['employee_group_id'])->value('name');
+                foreach ($work_arrange->employees as $key => $employee)
+                {
+                    $employee->job_name = Job::where('id',$employee->job_id)->value('name');
+                }
+
                 $work_time->work_arrange =$work_arrange->toArray() ;
             }
             $start_time = date('Y-m-d').' '. $work_time->start_time;

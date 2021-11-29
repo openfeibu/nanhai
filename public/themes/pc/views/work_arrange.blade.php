@@ -5,7 +5,7 @@
             <div class="time-line"> {{ $work_time['start_time'] }} - {{$work_time['end_time'] }} {{ $work_time['work_arrange']['employee_group_name'] }}组 </div>
             @if(isset($work_time['work_arrange']['employees']))
                 @foreach($work_time['work_arrange']['employees'] as $key=> $employee)
-                    <div class="name-line"> {{ $employee['name'] }} </div>
+                    <div class="name-line"> {{ $employee['job_name'] }} -- {{ $employee['name'] }} </div>
                 @endforeach
             @endif
         @else
