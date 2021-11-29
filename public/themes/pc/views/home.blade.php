@@ -17,23 +17,21 @@
     </div>
 	<div class="zb-title">值班表</div>
     <div id="work_arrange">
-
-        
         @foreach($work_times as $key=> $work_time)
-		<div class="item" @if(!$work_time->is_show) style="display: none;" @endif>
-        @if(isset($work_time['work_arrange']) && $work_time['work_arrange'])
-			
-            <div class="time-line"> {{ $work_time['start_time'] }} - {{$work_time['end_time'] }} {{ $work_time['work_arrange']['employee_group_name'] }}组 </div>
-            @if(isset($work_time['work_arrange']['employees']))
-                @foreach($work_time['work_arrange']['employees'] as $key=> $employee)
-                    <div class="name-line"> {{ $employee['name'] }} </div>
-                @endforeach
+            <div class="item" @if(!$work_time->is_show) style="display: none;" @endif>
+            @if(isset($work_time['work_arrange']) && $work_time['work_arrange'])
+
+                <div class="time-line"> {{ $work_time['start_time'] }} - {{$work_time['end_time'] }} {{ $work_time['work_arrange']['employee_group_name'] }}组 </div>
+                @if(isset($work_time['work_arrange']['employees']))
+                    @foreach($work_time['work_arrange']['employees'] as $key=> $employee)
+                        <div class="name-line"> {{ $employee['name'] }} </div>
+                    @endforeach
+                @endif
+            @else
+                <div>{{ $work_time['start_time'] }} - {{$work_time['end_time'] }} 未排班</div>
+
             @endif
-        @else
-            <div>{{ $date }} {{ $work_time['start_time'] }} - {{$work_time['end_time'] }} 未排班</div>
-		
-        @endif
-</div>
+            </div>
         @endforeach
     </div>
 </div>
@@ -63,11 +61,15 @@ layui.use(['jquery','element','table'], function(){
 		})
 		var Date = "{{ date('j') }}";
 		
-		//Ctime()
+		Ctime()
 		setInterval(function(){
-			//Ctime()
+			Ctime()
 		},30000)
 		function Ctime(){
+		    $.get('/',function (data) {
+		        $("#work_arrange").html(data);
+               // console.log(data);
+            });
 			var nowDate = myDate.getDate();
 			console.log(nowDate,Date)
 			if(nowDate != Date){

@@ -101,6 +101,10 @@ abstract class Response
 
         return view()->first($this->getView(), $this->getData());
     }
+    public function render()
+    {
+        return $this->http();
+    }
 
     /**
      * Return  whole page for the http request.

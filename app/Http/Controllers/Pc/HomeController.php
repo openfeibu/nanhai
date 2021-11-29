@@ -46,7 +46,7 @@ class HomeController extends BaseController
                 $end_time = date('Y-m-d H:i:s',strtotime($end_time.' -1 day'));
                 //var_dump($work_time->start_time,$start_time);exit;
             }
-            //echo(date("Y-m-d H:i:s").'-'.$start_time.'-'.$end_time."<br>");
+            echo(date("Y-m-d H:i:s").'-'.$start_time.'-'.$end_time."<br>");
             if(time()>=strtotime($start_time) && time()<strtotime($end_time))
             {
                 $work_time->is_show = 1;
@@ -54,28 +54,25 @@ class HomeController extends BaseController
                 $work_time->is_show = 0;
             }
         }
-
-        if ($this->response->typeIs('json')) {
-            $content = $this->response->title('值班表')
+        if ($this->response->typeIs('json') || request()->ajax()) {
+            return $content = $this->response->title('值班表')
                 ->layout('render')
                 ->view('work_arrange')
                 ->data(compact('work_times','date'))
-                ->http()->getContent();
-            return $this->response
-                ->success()
-                ->data([
-                    'content' => $content
-                ])
-                ->output();
+                ->render();
         }
-
 
         return $this->response->title('值班表')
             ->view('home')
             ->data(compact('work_times','date'))
             ->output();
     }
+    public function compare_time(Request $request)
+    {
+        $last_date = $request->get('last_date');
+        $end_date = $request->get('end_date');
 
+    }
     public function test(Request $request)
     {
         exit;
