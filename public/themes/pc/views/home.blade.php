@@ -55,13 +55,13 @@ layui.use(['jquery','element','table'], function(){
 		        $("#work_arrange").html(data);
                // console.log(data);
             });
-			var nowDate = myDate.getDate();
-			console.log(nowDate,Date)
-			if(nowDate != Date){
-				//diff
-				Date = nowDate;
-				window.location.reload();
-			}
+			// var nowDate = myDate.getDate();
+			// console.log(nowDate,Date)
+			// if(nowDate != Date){
+				// //diff
+				// Date = nowDate;
+				// window.location.reload();
+			// }
 		}
 		
 });
