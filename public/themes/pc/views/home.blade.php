@@ -49,7 +49,7 @@ layui.use(['jquery','element','table'], function(){
 		//Ctime()
 		setInterval(function(){
 			Ctime()
-		},30000)
+		},60000)
 		function Ctime(){
 		    $.get('/',function (data) {
 		        $("#work_arrange").html(data);
