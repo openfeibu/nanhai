@@ -62,6 +62,7 @@ class HomeController extends BaseController
             }else{
                 $work_time->is_show = 0;
             }
+            $work_time->end_time = $work_time->end_time == '23:59:59'? '00:00:00' : $work_time->end_time;
         }
         if ($this->response->typeIs('json') || request()->ajax()) {
             return $content = $this->response->title('值班表')
