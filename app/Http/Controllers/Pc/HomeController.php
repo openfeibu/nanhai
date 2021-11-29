@@ -46,7 +46,7 @@ class HomeController extends BaseController
                 $end_time = date('Y-m-d H:i:s',strtotime($end_time.' -1 day'));
                 //var_dump($work_time->start_time,$start_time);exit;
             }
-            echo(date("Y-m-d H:i:s").'-'.$start_time.'-'.$end_time."<br>");
+            //echo(date("Y-m-d H:i:s").'-'.$start_time.'-'.$end_time."<br>");
             if(time()>=strtotime($start_time) && time()<strtotime($end_time))
             {
                 $work_time->is_show = 1;
