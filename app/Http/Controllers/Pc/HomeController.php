@@ -42,7 +42,7 @@ class HomeController extends BaseController
             $end_time = date('Y-m-d').' '. $work_time->end_time;
             if(time()<strtotime(date('Y-m-d 08:00:00')))
             {
-                if($start_time != '00:00:00')
+                if($work_time->start_time != '00:00:00')
                 {
                     $start_time = date('Y-m-d H:i:s',strtotime($start_time.' -1 day'));
                     $end_time = date('Y-m-d H:i:s',strtotime($end_time.' -1 day'));
