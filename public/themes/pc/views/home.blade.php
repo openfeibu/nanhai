@@ -63,9 +63,9 @@ layui.use(['jquery','element','table'], function(){
 		})
 		var Date = "{{ date('j') }}";
 		
-		Ctime()
+		//Ctime()
 		setInterval(function(){
-			Ctime()
+			//Ctime()
 		},30000)
 		function Ctime(){
 			var nowDate = myDate.getDate();

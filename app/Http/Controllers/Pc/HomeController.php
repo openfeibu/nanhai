@@ -40,13 +40,13 @@ class HomeController extends BaseController
             }
             $start_time = date('Y-m-d').' '. $work_time->start_time;
             $end_time = date('Y-m-d').' '. $work_time->end_time;
-            if($work_time->start_time == '00:00:00')
+            if($work_time->start_time != '00:00:00')
             {
-                $start_time = date('Y-m-d H:i:s',strtotime($start_time.' +1 day'));
-                $end_time = date('Y-m-d H:i:s',strtotime($end_time.' +1 day'));
+                $start_time = date('Y-m-d H:i:s',strtotime($start_time.' -1 day'));
+                $end_time = date('Y-m-d H:i:s',strtotime($end_time.' -1 day'));
                 //var_dump($work_time->start_time,$start_time);exit;
             }
-            //echo(date("Y-m-d H:i:s").'-'.$start_time.'-'.$end_time."<br>");
+            echo(date("Y-m-d H:i:s").'-'.$start_time.'-'.$end_time."<br>");
             if(time()>=strtotime($start_time) && time()<strtotime($end_time))
             {
                 $work_time->is_show = 1;
