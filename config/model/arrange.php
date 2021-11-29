@@ -98,4 +98,25 @@ return [
 
         ]
     ],
+    'job'     => [
+        'model'        => 'App\Models\Job',
+        'table'        => 'jobs',
+        'primaryKey'   => 'id',
+        'hidden'       => [],
+        'visible'      => [],
+        'guarded'      => ['*'],
+        //'slugs'        => ['slug' => 'name'],
+        'fillable'     => ['name'],
+        'translate'    => [],
+        'upload_folder' => '/banner',
+        'encrypt'      => ['id'],
+        'revision'     => ['title'],
+        'perPage'      => '20',
+        'search'        => [
+
+        ],
+        'type' => [
+
+        ]
+    ],
 ];
